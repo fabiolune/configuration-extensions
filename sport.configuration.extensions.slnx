@@ -1,0 +1,6 @@
+<Solution>
+  <Folder Name="/tests/">
+    <Project Path="tests/Fl.Configuration.Extensions.Tests/Fl.Configuration.Extensions.Tests.csproj" />
+  </Folder>
+  <Project Path="Fl.Configuration.Extensions/Fl.Configuration.Extensions.csproj" />
+</Solution>
