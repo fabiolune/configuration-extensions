@@ -21,6 +21,8 @@ jobs:
       contents: write
       packages: write
       security-events: write
+      issues: write
+      pull-requests: write
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
@@ -156,6 +158,7 @@ jobs:
           ls ./*.nupkg | awk '! /symbols/' | xargs rm
 
       - name: Push packages to github packages (all versions)
+        if: ${{ github.event_name != 'pull_request' }}
         run: |
           dotnet nuget push ./*.nupkg --skip-duplicate
 
@@ -174,6 +177,7 @@ jobs:
           cp logo.png docs/images/logo.png
           echo "" >> docs/index.md
           echo "version ${{ env.GitVersion_FullSemVer }}" >> docs/index.md
+          echo "repo url: [${{ github.repositoryUrl }}](${{ github.repositoryUrl }})" >> docs/index.md
           tail -n +4 README.md >> docs/index.md
           cp Fl.Configuration.Extensions/README.md docs/docs/configuration-extensions.md
           docfx docs/docfx.json
