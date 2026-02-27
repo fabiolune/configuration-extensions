@@ -19,4 +19,9 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="10.0.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="\" />
+    <None Include="../logo.png" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
 </Project>
