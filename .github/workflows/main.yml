@@ -64,7 +64,7 @@ jobs:
         run: |
           dotnet sonarscanner begin \
             /o:fabiolune \
-            /k:fabiolune_functional-utils \
+            /k:fabiolune_configuration-extensions \
             /d:sonar.cs.opencover.reportsPaths="./**/coverage.*.opencover.xml" \
             /d:sonar.host.url=https://sonarcloud.io \
             /d:sonar.scanner.skipJreProvisioning=true \
