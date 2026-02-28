@@ -139,6 +139,7 @@ jobs:
               }
           }
           EOT
+          cat stryker-config.json
 
       - name: create stryker version parameter
         if: ${{ github.event_name == 'release' }}
