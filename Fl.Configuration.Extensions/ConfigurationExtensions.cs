@@ -1,7 +1,7 @@
-﻿using LanguageExt;
+﻿using Fl.Functional.Utils;
+using LanguageExt;
 using LanguageExt.UnsafeValueAccess;
 using Microsoft.Extensions.Configuration;
-using Fl.Functional.Utils;
 
 namespace Fl.Configuration.Extensions;
 

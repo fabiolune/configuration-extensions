@@ -65,7 +65,10 @@ public class ConfigurationExtensionsTests
             .Build();
 
         Action action = () => configuration.GetRequiredConfiguration<SomeConfiguration>();
-        action.ShouldThrow<KeyNotFoundException>("Someconfiguration section not found in Configuration.");
+        action
+            .ShouldThrow<KeyNotFoundException>()
+            .Message
+            .ShouldBe("SomeConfiguration section not found in Configuration.");
     }
 
     [Test]
@@ -84,5 +87,4 @@ public class ConfigurationExtensionsTests
             .IsNone
             .ShouldBeTrue();
     }
-
 }
