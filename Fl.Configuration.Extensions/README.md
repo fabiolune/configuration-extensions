@@ -129,7 +129,3 @@ public static Option<T> GetConfiguration<T>(this IConfiguration configuration) w
 - **Convention-Based**: No magic strings, uses type names as section keys
 - **Clean API**: Simple, expressive methods for common configuration patterns
 - **Multi-Framework**: Supports latest .NET versions
-
-## Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
