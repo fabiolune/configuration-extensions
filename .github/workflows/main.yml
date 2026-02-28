@@ -124,22 +124,21 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           lcov-file: ./coveragereport/lcov.info
 
-      - name: Install anc configure dotnet stryker
+      - name: Install and configure dotnet stryker
         run: |
           dotnet tool install -g dotnet-stryker
           export PATH="$PATH:$HOME/.dotnet/tools"
-          project_name=$(echo "${{ github.server }}/${{ github.repository }}" | cut -d'/' -f3-5)
+          project_name=$(echo "${{ github.server_url }}/${{ github.repository }}" | sed 's/https:\/\///g')
           cat <<EOT > stryker-config.json
           {
               "stryker-config": {
                   "project-info": {
-                      "name": "${project_name}",
+                      "name": "${project_name}"
                   },
                   "mutation-level": "advanced"
               }
           }
           EOT
-          cat stryker-config.json
 
       - name: create stryker version parameter
         if: ${{ github.event_name == 'release' }}
@@ -182,7 +181,7 @@ jobs:
           cp logo.png docs/images/logo.png
           echo "" >> docs/index.md
           echo "version ${{ env.GitVersion_FullSemVer }}" >> docs/index.md
-          echo "repo url: [${{ github.repositoryUrl }}](${{ github.repositoryUrl }})" >> docs/index.md
+          echo "repo url: [${{ github.server_url }}/${{ github.repository }}](${{ github.server_url }}/${{ github.repository }})" >> docs/index.md
           tail -n +4 README.md >> docs/index.md
           cp Fl.Configuration.Extensions/README.md docs/docs/configuration-extensions.md
           docfx docs/docfx.json
