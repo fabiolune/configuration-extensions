@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Fl.Configuration.Extensions | Configuration Extensions Documentation </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Fl.Configuration.Extensions | Configuration Extensions Documentation ">
+      
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/fabiolune/configuration-extensions/blob/v0.2.0/docs/docs/configuration-extensions.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.png" alt="">
+            
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="flconfigurationextensions">Fl.Configuration.Extensions</h1>
+
+<p>A .NET library that provides functional programming extensions for Microsoft's Configuration system, offering type-safe configuration binding with functional programming patterns.</p>
+<h2 id="features">Features</h2>
+<ul>
+<li><strong>Type-Safe Configuration Binding</strong>: Automatically maps configuration sections to strongly-typed objects</li>
+<li><strong>Functional Programming Support</strong>: Integration with LanguageExt Option monad for null-safe operations</li>
+<li><strong>Convention-Based</strong>: Uses type name as configuration section key</li>
+<li><strong>Dual APIs</strong>: Both strict (throws on missing) and safe (returns Option) configuration retrieval</li>
+<li><strong>Multi-Framework Support</strong>: Targets .NET 8.0, 9.0, and 10.0</li>
+</ul>
+<h2 id="installation">Installation</h2>
+<pre><code class="lang-bash">dotnet add package Fl.Configuration.Extensions
+</code></pre>
+<h2 id="usage">Usage</h2>
+<h3 id="configuration-class-setup">Configuration Class Setup</h3>
+<pre><code class="lang-csharp">public record DatabaseConfig 
+{
+    public string ConnectionString { get; init; }
+    public int Timeout { get; init; }
+}
+</code></pre>
+<h3 id="configuration-file-appsettingsjson">Configuration File (appsettings.json)</h3>
+<pre><code class="lang-json">{
+    &quot;DatabaseConfig&quot;: {
+        &quot;ConnectionString&quot;: &quot;Server=localhost;Database=MyDb;&quot;,
+        &quot;Timeout&quot;: 30
+    }
+}
+</code></pre>
+<h3 id="required-configuration-strict">Required Configuration (Strict)</h3>
+<p>Use <code>GetRequiredConfiguration&lt;T&gt;()</code> when the configuration section must be present:</p>
+<pre><code class="lang-csharp">var dbConfig = configuration.GetRequiredConfiguration&lt;DatabaseConfig&gt;();
+// Throws KeyNotFoundException if &quot;DatabaseConfig&quot; section is missing
+Console.WriteLine($&quot;Connection: {dbConfig.ConnectionString}&quot;);
+</code></pre>
+<h3 id="optional-configuration-safe">Optional Configuration (Safe)</h3>
+<p>Use <code>GetConfiguration&lt;T&gt;()</code> for optional configuration sections:</p>
+<pre><code class="lang-csharp">var optionalConfig = configuration.GetConfiguration&lt;DatabaseConfig&gt;();
+
+// Functional pattern matching:
+optionalConfig.Match(
+    /* Some: */ config =&gt; {
+        Console.WriteLine($&quot;Connection: {config.ConnectionString}&quot;);
+        // Use the configuration
+    },
+    /* None: */ () =&gt; {
+        Console.WriteLine(&quot;Configuration not found, using defaults&quot;);
+        // Handle missing configuration gracefully
+    }
+);
+
+// Or check if present:
+if (optionalConfig.IsSome)
+{
+    var config = optionalConfig.ValueUnsafe();
+    // Use config...
+}
+</code></pre>
+<h2 id="api-reference">API Reference</h2>
+<h3 id="extension-methods">Extension Methods</h3>
+<h4 id="getrequiredconfigurationt"><code>GetRequiredConfiguration&lt;T&gt;()</code></h4>
+<pre><code class="lang-csharp">public static T GetRequiredConfiguration&lt;T&gt;(this IConfiguration configuration) where T : class, new()
+</code></pre>
+<ul>
+<li><strong>Returns</strong>: Instance of type <code>T</code> populated from configuration</li>
+<li><strong>Throws</strong>: <code>KeyNotFoundException</code> if the configuration section is missing</li>
+<li><strong>Section Key</strong>: Uses <code>typeof(T).Name</code> as the configuration section key</li>
+</ul>
+<h4 id="getconfigurationt"><code>GetConfiguration&lt;T&gt;()</code></h4>
+<pre><code class="lang-csharp">public static Option&lt;T&gt; GetConfiguration&lt;T&gt;(this IConfiguration configuration) where T : class, new()
+</code></pre>
+<ul>
+<li><strong>Returns</strong>: <code>Option&lt;T&gt;</code> - <code>Some&lt;T&gt;</code> if found, <code>None</code> if missing</li>
+<li><strong>Section Key</strong>: Uses <code>typeof(T).Name</code> as the configuration section key</li>
+<li><strong>Safe</strong>: Never throws exceptions, use functional pattern matching</li>
+</ul>
+<h2 id="dependencies">Dependencies</h2>
+<ul>
+<li><strong>Microsoft.Extensions.Configuration</strong> (≥10.0.3)</li>
+<li><strong>Microsoft.Extensions.Configuration.Abstractions</strong> (≥10.0.3)</li>
+<li><strong>Microsoft.Extensions.Configuration.Binder</strong> (≥10.0.3)</li>
+<li><strong>Fl.Functional.Utils</strong> (≥0.1.0)</li>
+<li><strong>LanguageExt</strong>: Functional programming library for Option monad</li>
+</ul>
+<h2 id="target-frameworks">Target Frameworks</h2>
+<ul>
+<li>.NET 8.0</li>
+<li>.NET 9.0</li>
+<li>.NET 10.0</li>
+</ul>
+<h2 id="ideal-use-cases">Ideal Use Cases</h2>
+<ol>
+<li><strong>Microservices Architecture</strong>: Clean, type-safe configuration binding</li>
+<li><strong>Functional Programming</strong>: Integration with functional codebases using LanguageExt</li>
+<li><strong>Configuration Validation</strong>: Early detection of missing required configuration</li>
+<li><strong>Optional Feature Configuration</strong>: Safe handling of optional configuration sections</li>
+<li><strong>Strongly-Typed Configuration</strong>: Automatic mapping without manual binding code</li>
+</ol>
+<h2 id="benefits">Benefits</h2>
+<ul>
+<li><strong>Type Safety</strong>: Compile-time guarantees for configuration structure</li>
+<li><strong>Functional Programming</strong>: Option monad prevents null reference exceptions</li>
+<li><strong>Convention-Based</strong>: No magic strings, uses type names as section keys</li>
+<li><strong>Clean API</strong>: Simple, expressive methods for common configuration patterns</li>
+<li><strong>Multi-Framework</strong>: Supports latest .NET versions</li>
+</ul>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/fabiolune/configuration-extensions/blob/v0.2.0/docs/docs/configuration-extensions.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

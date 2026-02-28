@@ -1,0 +1,47 @@
+### YamlMime:XRefMap
+sorted: true
+references:
+- uid: Fl.Configuration.Extensions
+  name: Fl.Configuration.Extensions
+  href: api/Fl.Configuration.Extensions.html
+  commentId: N:Fl.Configuration.Extensions
+  fullName: Fl.Configuration.Extensions
+  nameWithType: Fl.Configuration.Extensions
+- uid: Fl.Configuration.Extensions.ConfigurationExtensions
+  name: ConfigurationExtensions
+  href: api/Fl.Configuration.Extensions.ConfigurationExtensions.html
+  commentId: T:Fl.Configuration.Extensions.ConfigurationExtensions
+  fullName: Fl.Configuration.Extensions.ConfigurationExtensions
+  nameWithType: ConfigurationExtensions
+- uid: Fl.Configuration.Extensions.ConfigurationExtensions.GetConfiguration*
+  name: GetConfiguration
+  href: api/Fl.Configuration.Extensions.ConfigurationExtensions.html#Fl_Configuration_Extensions_ConfigurationExtensions_GetConfiguration_
+  commentId: Overload:Fl.Configuration.Extensions.ConfigurationExtensions.GetConfiguration
+  isSpec: "True"
+  fullName: Fl.Configuration.Extensions.ConfigurationExtensions.GetConfiguration
+  nameWithType: ConfigurationExtensions.GetConfiguration
+- uid: Fl.Configuration.Extensions.ConfigurationExtensions.GetConfiguration``1(Microsoft.Extensions.Configuration.IConfiguration)
+  name: GetConfiguration<T>(IConfiguration)
+  href: api/Fl.Configuration.Extensions.ConfigurationExtensions.html#Fl_Configuration_Extensions_ConfigurationExtensions_GetConfiguration__1_Microsoft_Extensions_Configuration_IConfiguration_
+  commentId: M:Fl.Configuration.Extensions.ConfigurationExtensions.GetConfiguration``1(Microsoft.Extensions.Configuration.IConfiguration)
+  name.vb: GetConfiguration(Of T)(IConfiguration)
+  fullName: Fl.Configuration.Extensions.ConfigurationExtensions.GetConfiguration<T>(Microsoft.Extensions.Configuration.IConfiguration)
+  fullName.vb: Fl.Configuration.Extensions.ConfigurationExtensions.GetConfiguration(Of T)(Microsoft.Extensions.Configuration.IConfiguration)
+  nameWithType: ConfigurationExtensions.GetConfiguration<T>(IConfiguration)
+  nameWithType.vb: ConfigurationExtensions.GetConfiguration(Of T)(IConfiguration)
+- uid: Fl.Configuration.Extensions.ConfigurationExtensions.GetRequiredConfiguration*
+  name: GetRequiredConfiguration
+  href: api/Fl.Configuration.Extensions.ConfigurationExtensions.html#Fl_Configuration_Extensions_ConfigurationExtensions_GetRequiredConfiguration_
+  commentId: Overload:Fl.Configuration.Extensions.ConfigurationExtensions.GetRequiredConfiguration
+  isSpec: "True"
+  fullName: Fl.Configuration.Extensions.ConfigurationExtensions.GetRequiredConfiguration
+  nameWithType: ConfigurationExtensions.GetRequiredConfiguration
+- uid: Fl.Configuration.Extensions.ConfigurationExtensions.GetRequiredConfiguration``1(Microsoft.Extensions.Configuration.IConfiguration)
+  name: GetRequiredConfiguration<T>(IConfiguration)
+  href: api/Fl.Configuration.Extensions.ConfigurationExtensions.html#Fl_Configuration_Extensions_ConfigurationExtensions_GetRequiredConfiguration__1_Microsoft_Extensions_Configuration_IConfiguration_
+  commentId: M:Fl.Configuration.Extensions.ConfigurationExtensions.GetRequiredConfiguration``1(Microsoft.Extensions.Configuration.IConfiguration)
+  name.vb: GetRequiredConfiguration(Of T)(IConfiguration)
+  fullName: Fl.Configuration.Extensions.ConfigurationExtensions.GetRequiredConfiguration<T>(Microsoft.Extensions.Configuration.IConfiguration)
+  fullName.vb: Fl.Configuration.Extensions.ConfigurationExtensions.GetRequiredConfiguration(Of T)(Microsoft.Extensions.Configuration.IConfiguration)
+  nameWithType: ConfigurationExtensions.GetRequiredConfiguration<T>(IConfiguration)
+  nameWithType.vb: ConfigurationExtensions.GetRequiredConfiguration(Of T)(IConfiguration)
